@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './components/main';
-import '../css/main.css';
+import '../css/app.scss';
 
 React.render(<Main/>, document.body);
 
