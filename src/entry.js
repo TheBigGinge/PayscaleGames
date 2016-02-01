@@ -1,5 +1,6 @@
 import React from 'react';
-import App from './components/app';
-import '../css/app.scss';
+import Main from './components/main';
+import '../css/main.css';
 
-React.render(<App/>, document.body);
+React.render(<Main/>, document.body);
+
