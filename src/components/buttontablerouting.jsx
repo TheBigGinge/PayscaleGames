@@ -15,7 +15,7 @@ export default class TableRouter extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <h2 style={{textAlign: 'center'}}>Do what must be done</h2>
+            <h2 className="fancyFont" style={{textAlign: 'center'}}><strong>Do what must be done</strong></h2>
           </div>
         </div>
         <div className="row" >
