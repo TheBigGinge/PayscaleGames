@@ -3,28 +3,37 @@ let Header = require('../components/header');
 let SignIn = require('../components/signin');
 let BackGroundImage = require('../components/backgroundimage');
 let ButtonTableRouting = require('../components/buttontablerouting');
+import RegisterForm from '../components/registerForm';
 
 
 class Main extends React.Component {
   constructor() {
     super();
     this.state = {
-      signedInSuccess: false
+      signedInSuccess: false,
+      registerForm: false
     };
-    this._onChildChange = this._onChildChange.bind(this);
+    this._onSignInChange = this._onSignInChange.bind(this);
+    this._handleRegisterChange = this._handleRegisterChange.bind(this);
   }
 
-  _onChildChange(newState) {
+  _onSignInChange(newState) {
     this.setState({signedInSuccess: true});
+  }
+
+  _handleRegisterChange(newState) {
+    this.setState({registerForm: newState});
   }
 
   render() {
     return(
       <div>
         {!this.state.signedInSuccess && <Header />}
-        {!this.state.signedInSuccess && <SignIn callbackParent={this._onChildChange} />}
-        {this.state.signedInSuccess && <BackGroundImage />}
-        {this.state.signedInSuccess && <ButtonTableRouting />}
+        {!this.state.signedInSuccess && <SignIn callbackParent={this._onSignInChange} />}
+        {this.state.signedInSuccess && !this.state.registerForm && <BackGroundImage />}
+        {this.state.signedInSuccess && !this.state.registerForm && <ButtonTableRouting 
+          callbackParent={this._handleRegisterChange}/>}
+        {this.state.signedInSuccess && this.state.registerForm && <RegisterForm />}
       </div>
     )
   }

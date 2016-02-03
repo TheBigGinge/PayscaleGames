@@ -7,7 +7,7 @@ export default class TableRouter extends React.Component {
   }
 
   _handleRegisterAGame() {
-    console.log("here");
+    this.props.callbackParent(true);
   }
 
   render() {
