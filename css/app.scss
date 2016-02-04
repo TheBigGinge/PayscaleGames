@@ -8,8 +8,24 @@
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
     min-height: 400px;
-
 }
+
+#registerFormBackground {
+    margin-bottom: 0px;
+    background-image: url(/images/registerFormBackground.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+    min-height: 400px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
 #sidertron {
     margin-bottom: 0px;
     background-image: url(/images/Xwing_Alliance.jpg);

@@ -1,5 +1,5 @@
 import React from 'react';
-//import FactionDropdown from '../components/factionDropdown'; 
+import FactionDropdown from '../components/factionDropdown'; 
 
 export default class RegisterForm extends React.Component {
   constructor() {
@@ -11,8 +11,9 @@ export default class RegisterForm extends React.Component {
   }
 
   render() {
-    return(
+    return(     
       <div className="container">
+      <FactionDropdown />
         <div className="row" >
           <div className="col-md-6">
             <div style={{margin: '20px'}}>
@@ -74,9 +75,9 @@ export default class RegisterForm extends React.Component {
             <div style={{margin: '20px'}}>
               <div style={{textAlign: 'center'}}>
                 <h3 className="buttonHeader">Player One Results</h3>
-                <button className="btn btn-default" >Win</button>
-                <button className="btn btn-default" >Modifed Win</button>
-                <button className="btn btn-default" >Loss</button>
+                <button className="btn btn-default" style={{margin: '5px'}}>Win</button>
+                <button className="btn btn-default" style={{margin: '5px'}}>Modifed Win</button>
+                <button className="btn btn-default" style={{margin: '5px'}}>Loss</button>
               </div>
             </div>
           </div>
@@ -84,9 +85,9 @@ export default class RegisterForm extends React.Component {
             <div style={{margin: '20px'}}>
               <div style={{textAlign: 'center'}}>
                 <h3 className="buttonHeader">Player Two Results</h3>
-                <button className="btn btn-default" >Win</button>
-                <button className="btn btn-default" >Modifed Win</button>
-                <button className="btn btn-default" >Loss</button>
+                <button className="btn btn-default" style={{margin: '5px'}}>Win</button>
+                <button className="btn btn-default" style={{margin: '5px'}}>Modifed Win</button>
+                <button className="btn btn-default" style={{margin: '5px'}}>Loss</button>
               </div>
             </div>
           </div>
