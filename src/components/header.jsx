@@ -1,6 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 
+let Header = () => (
+  <div id="headertron">
+    <div className="container">
+      <h1>Welcome Sons!</h1>
+    </div>
+  </div>
+);
+
+Header = connect()(Header);
+export default Header;
+
+/*
 export default class Header extends React.Component {
   constructor() {
     super();
@@ -8,12 +21,12 @@ export default class Header extends React.Component {
 
   render() {
     return(
-        <div id="headertron" className="jumbotron">
+        <div id="headertron">
           <div className="container">
-            <h1>West Seattle X-wing</h1>
-            <h4>Sign in for league results and achievement information</h4> 
+            <h1>Welcome Sons!</h1>
           </div>
         </div>
     )
   }
 }
+*/
