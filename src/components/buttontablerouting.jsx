@@ -33,7 +33,7 @@ let TableRouter = ({ dispatch }) => (
         <div style={{margin: '20px'}}>
           <div style={{textAlign: 'center'}}>
             <h3 className="buttonHeader">Destiny</h3>
-            <a href="#"><img className="center-block" src="../images/xwingButtonThree.jpeg" ></img></a>
+            <a href="#"><img className="center-block" src="../images/kylo.jpg" ></img></a>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ let TableRouter = ({ dispatch }) => (
         <div style={{margin: '20px'}}>
           <div style={{textAlign: 'center'}}>
             <h3 className="buttonHeader">Imperial Assault</h3>
-            <a href="#"><img className="center-block" src="../images/xwingButtonThree.jpeg" ></img></a>
+            <a href="#"><img className="center-block" src="../images/troopers.jpeg" ></img></a>
           </div>
         </div>
       </div>
