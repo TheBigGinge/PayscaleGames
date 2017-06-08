@@ -4,11 +4,11 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import Main from './components/main';
 import '../css/app.scss';
-import mainState from './reducers/stateFanciness';
+import app from './reducers/app';
 import { render } from 'react-dom';
 
 
-let store = createStore(mainState, applyMiddleware(thunkMiddleware));
+let store = createStore(app, applyMiddleware(thunkMiddleware));
 
 
 render(<Provider store={store}><Main /></Provider>, document.getElementById('app'));
