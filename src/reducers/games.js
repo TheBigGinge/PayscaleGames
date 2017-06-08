@@ -7,7 +7,7 @@ const initialState = {
 		},
 		{
 			title: 'One Night Ultimate Werewolf',
-			description: 'Like mafia but only one night with werewolves',
+			description: 'Like mafia but ultimately only one night with werewolves',
 			img: 'https://cdn.shopify.com/s/files/1/0740/4855/products/ONUW-BOX-COVER.jpg?v=1461752063'
 		},
 		{

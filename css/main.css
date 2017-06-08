@@ -51,6 +51,10 @@ div input {
   margin-bottom: 10px;
 }
 
+p {
+    font-size: 16px;
+}
+
 .center-block {
     display: block;
     margin-left: auto;
