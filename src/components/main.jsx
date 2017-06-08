@@ -16,7 +16,7 @@ class Main extends React.Component {
 
     render() {
         return <div>
-  		<Header />
+      		<Header />
             { this._fancyFucnctionForGalen() }
             <Games />
         </div>  
