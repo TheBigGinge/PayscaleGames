@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Games from './games'
 import Header from './header';
+import Players from './players';
 
 class Main extends React.Component {
 
@@ -16,9 +17,10 @@ class Main extends React.Component {
 
     render() {
         return <div>
-  		<Header />
+  			<Header />
             { this._fancyFucnctionForGalen() }
             <Games />
+            <Players />
         </div>  
     }
 

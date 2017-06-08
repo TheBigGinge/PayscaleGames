@@ -11,7 +11,7 @@ let Games = ({ dispatch, games }) => {
 	});
 
 	return <div className="games-wrapper">
-		<h1>Game List</h1>
+		<h1>Games We Play</h1>
 		{ gamesList }
 	</div>;
 };
