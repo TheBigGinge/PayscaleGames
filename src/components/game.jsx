@@ -1,18 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-let Game = ({ dispatch, game }) => {
-	return <div className="game-wrapper">
+let Game = ({ game, isEven }) => {
+	return <div className={ "game-wrapper " + (isEven ? 'highlight' : '')}>
 		<h2>{game.title}</h2>
 		<img src={game.img} alt={game.title} />
 		<p>{game.description}</p>
 	</div>
 };
 
-const mapStateToProps = (state) => {
-    return {
-    	games: state.games
-    };
-};
-
-export default connect(mapStateToProps)(Game);
+export default Game;

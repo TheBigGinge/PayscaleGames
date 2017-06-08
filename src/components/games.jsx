@@ -1,14 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Game from './game';
+import '../../css/games.scss';
 
 let Games = ({ dispatch, games }) => {
-	let gamesList = games && games.map((game) => {
+	let gamesList = games && games.map((game, index) => {
 		return (<Game game={ game }
+					  isEven={ index % 2 == 0}
 					  key={ game.title } />);
 	});
 
 	return <div className="games-wrapper">
+		<h1>Game List</h1>
 		{ gamesList }
 	</div>;
 };

@@ -1,0 +1,19 @@
+.games-wrapper {
+	margin: 10px;
+
+	.game-wrapper {
+		overflow: auto;
+		padding: 10px 0 10px 0;
+
+		img {
+			height: 200px;
+			width: auto;
+			float: left;
+			margin-right: 10px;
+		}
+
+		&.highlight {
+			background-color: rgba(244,247,228, .3);
+		}
+	}
+}
