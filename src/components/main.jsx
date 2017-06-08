@@ -3,14 +3,26 @@ import { connect } from 'react-redux';
 import Games from './games'
 import Header from './header';
 
+class Main extends React.Component {
 
-let Main = ({ dispatch }) => (
-  <div>
-  	<Header />
-    Hello Ashley!
-    <Games />
-  </div>  
-);
+    constructor(props) {
+        super(props);
+    }
+
+
+    _fancyFucnctionForGalen() {
+        return 'Hello Galen!';
+    }
+
+    render() {
+        return <div>
+  		<Header />
+            { this._fancyFucnctionForGalen() }
+            <Games />
+        </div>  
+    }
+
+};
 
 
 const mapStateToProps = (state) => {
