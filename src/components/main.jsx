@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import AddGameModal from './addGameModal';
 import Games from './games'
 import Header from './header';
 import Players from './players';
@@ -16,9 +17,12 @@ class Main extends React.Component {
     }
 
     render() {
+        let { showGameModal, dispatch } = this.props;
+        console.log(showGameModal);
         return <div>
   			<Header />
             { this._fancyFucnctionForGalen() }
+            {showGameModal && <AddGameModal dispatch={dispatch} />}
             <Games />
             <Players />
         </div>  
@@ -29,7 +33,8 @@ class Main extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        signedInSuccess: state.signedInSuccess
+        signedInSuccess: state.signedInSuccess,
+        showGameModal: state.mainState.showGameModal
     };
 };
 
