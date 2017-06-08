@@ -1,7 +1,14 @@
 const initialState = {
 	playerList: [
 		{
-			name: "Ashley Dillinger"
+			name: "Ashley Dillinger",
+			wins: "All the wins!",
+			losses: "NONE"
+		},
+		{
+			name: "Jim Skerritt",
+			wins: "NONE",
+			losses: "All the losses! (with rage)"
 		}
 	]
 };
