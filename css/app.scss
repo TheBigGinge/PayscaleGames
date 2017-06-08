@@ -1,3 +1,27 @@
+a {
+    color: #A5AF99;
+}
+
+a:hover {
+    color: darken(#BCC6C5, 20%);
+}
+
+button {
+    background-color: #D3D8B0 !important;
+    color: white !important;
+}
+
+button:hover {
+    background-color: #A5AF99 !important;
+}
+
+h2 {
+    color: #5A5C69;
+}
+
+.highlight {
+    background-color: rgba(244,247,228, .3);
+}
 
 #headertron {
     margin-bottom: 0px;
@@ -71,6 +95,7 @@
 
 .body {
   background-color: #F8F8F8;
+  font-size: 16px;
 }
 
 div input {
