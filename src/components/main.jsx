@@ -3,12 +3,25 @@ import { connect } from 'react-redux';
 import Games from './games'
 
 
-let Main = ({ dispatch }) => (
-  <div>
-    Hello Ashley!
-    <Games />
-  </div>  
-);
+class Main extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+
+    _fancyFucnctionForGalen() {
+        return 'Hello Galen!';
+    }
+
+    render() {
+        return <div>
+            { this._fancyFucnctionForGalen() }
+            <Games />
+        </div>  
+    }
+
+};
 
 
 const mapStateToProps = (state) => {
