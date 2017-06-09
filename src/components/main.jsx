@@ -17,7 +17,7 @@ class Main extends React.Component {
 
     render() {
         let { showGameModal, dispatch } = this.props;
-        console.log(showGameModal);
+
         return <div>
             { this._fancyFucnctionForGalen() }
             {showGameModal && <AddGameModal dispatch={dispatch} />}

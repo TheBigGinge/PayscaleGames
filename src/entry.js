@@ -7,7 +7,6 @@ import * as reducers from './reducers/';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory, hashHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import createBrowserHistory from 'history';
 import Main from './components/main';
 import LeaderBoard from './components/LeaderBoard';
 import Header from './components/header.jsx';
@@ -40,7 +39,7 @@ render(
     	{ /* Tell the Router to use our enhanced history */ }
     	<Router history={history}>
       		<Route path="/" component={Header}>
-        		<IndexRoute component={Main}/>
+        		<IndexRoute component={Main} />
         		<Route path="/leaderboards" component={LeaderBoard}/>
       		</Route>
     	</Router>

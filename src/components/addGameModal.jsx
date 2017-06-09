@@ -1,27 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Modal from './modal';
-import { closeAddGameModal, addGame } from '../actions/index';
+import { closeAddGameModal, addGame, updateNewGameTitle, updateNewGameDescription,
+		 updateNewGameImage } from '../actions/index';
 
 let AddGameModal = ({ dispatch }) => {
+	let formId = 'addGameForm';
 	return <div className="add-game-modal-wrapper">
 		<Modal closeMethod={() => dispatch(closeAddGameModal())}
-			   okMethod={(e) => dispatch(addGame(e))}
+			   okMethod={(e) => {}}
 			   okText='Add Game'
-			   title='Add a Game'>
+			   title='Add a Game'
+			   formId={formId}>
 			<h2>What a fine Body</h2>
-			<form className="form-horizontal">
+			<form id={formId} className="form-horizontal" onSubmit={(e) => dispatch(addGame(e))}>
 			  <div>
-			    <label for="gameTitle" className="control-label">Title</label>
-			    <input type="text" className="form-control" id="gameTitle" placeholder="ex) One Night Ultimate Werewofl" />
+			    <label htmlFor="gameTitle" className="control-label">Title</label>
+			    <input onChange={(e) => dispatch(updateNewGameTitle(e))} type="text" className="form-control" id="gameTitle" name="gameTitle" placeholder="ex) One Night Ultimate Werewolf" />
 			  </div>
 			  <div>
-			    <label for="gameDescription" className="control-label">Description</label>
-			    <textArea type="text" className="form-control" id="gameDescription" placeholder="ex) Like mafia but ultimately only one night with werewolves"></textArea>
+			    <label htmlFor="gameDescription" className="control-label">Description</label>
+			    <textArea onChange={(e) => dispatch(updateNewGameDescription(e))} type="text" className="form-control" id="gameDescription" placeholder="ex) Like mafia but ultimately only one night with werewolves"></textArea>
 			  </div>
 			  <div>
-			    <label for="gameImage" className="control-label">Image Link</label>
-			    <input type="text" className="form-control" id="gameImage" placeholder="ex) https://cdn.shopify.com/s/files/1/0740/4855/products/ONUW-BOX-COVER.jpg?v=1461752063" />
+			    <label htmlFor="gameImage" className="control-label">Image Link</label>
+			    <input onChange={(e) => dispatch(updateNewGameImage(e))} type="text" className="form-control" id="gameImage" placeholder="ex) https://cdn.shopify.com/s/files/1/0740/4855/products/ONUW-BOX-COVER.jpg?v=1461752063" />
 			  </div>
 			</form>
 		</Modal>
