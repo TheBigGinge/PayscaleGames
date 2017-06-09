@@ -6,8 +6,9 @@
   "author": "Ryan Moore",
   "license": "Business",
   "scripts": {
-    "postinstall": "webpack --config ./webpack-prod.config.js --progress --colors",
-    "start": "node server.js --history-api-fallback"
+    "build": "webpack --config ./webpack-prod.config.js --progress --colors",
+    "start": "node server.js --history-api-fallback",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
