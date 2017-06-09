@@ -1,0 +1,31 @@
+.main {
+
+    #backgroundImage {
+        margin-bottom: 0px;
+        background-image: url(/images/chewie3p0.png);
+        background-position: 0% 25%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+        text-shadow: black 0.3em 0.3em 0.3em;
+        text-align: center;
+        min-height: 400px; 
+        font-size: 40px;
+        box-shadow: inset 3px 3px 5px 6px;
+        position: relative;
+
+
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+           -moz-animation: fadein 2s; /* Firefox < 16 */
+            -ms-animation: fadein 2s; /* Internet Explorer */
+             -o-animation: fadein 2s; /* Opera < 12.1 */
+                animation: fadein 2s;
+
+        .container {
+            position: absolute;
+            top: 30%;
+            bottom: 50%;
+        }
+    }
+}
+
