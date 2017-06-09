@@ -1,0 +1,78 @@
+Players
+    /players/add
+        POST (name and email both required, email is used as primary key)
+        {
+            "email": "galen.scovell@gmail.com",
+            "name": "GalenS"
+        }
+    /players/get
+        GET w/ querystring 'email'
+    /players/remove
+        DELETE w/ querystring 'email'
+    /players/update
+        PUT (email is required, all else that is not null will replace entry in DB)
+        {
+            "email": "galen.scovell@gmail.com",
+            "name": "GalenS",
+            "wins": 2,
+            "sessions": 2,
+            "profile_img_url": null
+        }
+
+Votes
+    /votes/add
+        POST (week and options required)
+        {
+            "week": 1,
+            "option_1_name": "Scythe",
+            "option_2_name": "Agricola",
+            "option_3_name": "Terra Mystica"
+        }
+    /votes/get
+        GET w/ querystring "week"
+    /votes/remove
+        DELETE w/ querystring "week"
+    /votes/update
+        PUT (increments option vote if player has not already voted, vote must correspond to option)
+        {
+            "player_email": "galen.scovell@gmail.com",
+            "vote": "Terra Mystica"
+        }
+    
+Games
+    /games/add
+        POST
+        {
+            "name": "Terra Mystica"
+        }
+    /games/get
+        GET w/ querystring "name"
+    /games/remove
+        DELETE w/querystring "name"
+    /games/update
+        PUT (name is required, all else that is not null will replace entry in DB
+        {
+            "name": "Terra Mystica",
+            "times_played": 1,
+            "average_play_time": 40,
+            "how_to_play_url": "",
+            "image_url": ""
+        }
+
+Sessions
+    /sessions/add
+        POST (all values required)
+        {
+            "week": 1,
+            "game_played": "Terra Mystica",
+            "players": [
+                "galen.scovell@payscale.com",
+                "ryan.moore@payscale.com"
+            ],
+            "play_time": 120,
+            "winner": "galen.scovell@payscale.com"
+        }
+    /sessions/get
+        GET w/ querystring "week"
+    /sessions/remove
+        DELETE w/ querystring "week"
