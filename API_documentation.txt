@@ -26,7 +26,7 @@ Votes
     /votes/remove
         DELETE w/ querystring "week"
     /votes/update
-        PUT w/ querystring "player_email" and "vote" (must correspond to an option)
+        PUT w/ querystring "email", "week", and "vote" (must correspond to an option)
     
 Games
     /games/add
@@ -48,7 +48,7 @@ Sessions
         POST (all values required)
         {
             "week": 1,
-            "game_played": "Terra Mystica",
+            "game": "Terra Mystica",
             "players": [
                 "galen.scovell@payscale.com",
                 "ryan.moore@payscale.com"

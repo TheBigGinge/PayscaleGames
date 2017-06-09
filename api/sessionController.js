@@ -1,5 +1,5 @@
 
-// CREATE TABLE sessions (week INT NOT NULL, game_played TEXT NOT NULL, players TEXT[] NOT NULL, play_time REAL NOT NULL, winner TEXT NOT NULL);
+// CREATE TABLE sessions (week INT NOT NULL, game TEXT NOT NULL, players TEXT[] NOT NULL, play_time REAL NOT NULL, winner TEXT NOT NULL);
 
 module.exports = function(app, pg, database_url) {
     /* 
@@ -15,7 +15,7 @@ module.exports = function(app, pg, database_url) {
             }
 
             var q = 'INSERT INTO sessions VALUES ($1, $2, $3, $4, $5);';
-            var query = client.query(q, [req.body.week, req.body.game_name.toLowerCase(), req.body.players, req.body.play_time, req.body.winner], function(err, result) {
+            var query = client.query(q, [req.body.week, req.body.game.toLowerCase(), req.body.players, req.body.play_time, req.body.winner], function(err, result) {
                 if (err) {
                     res.status(400);
                     res.send(JSON.stringify("Unable to add session"));
