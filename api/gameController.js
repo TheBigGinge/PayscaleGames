@@ -1,5 +1,5 @@
 
-// CREATE TABLE games (name TEXT PRIMARY KEY NOT NULL, times_played INT NOT NULL, average_play_time REAL NOT NULL, how_to_play_url TEXT, image_url TEXT);
+// CREATE TABLE games (name TEXT PRIMARY KEY NOT NULL, sessions INT NOT NULL, info_url TEXT NOT NULL, image_url TEXT NOT NULL);
 
 module.exports = function(app, pg, database_url) {
     /* 
@@ -10,16 +10,16 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
-            var q = 'INSERT INTO games VALUES ($1, $2, $3, $4, $5);';
-            var query = client.query(q, [req.body.name.toLowerCase(), 0, 0, null, null], function(err, result) {
+            var q = 'INSERT INTO games VALUES ($1, $2, $3, $4);';
+            var query = client.query(q, [req.body.name.toLowerCase(), 0, req.body.info_url, req.body.image_url], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to add new game"));
+                    return next();
                 }
 
                 res.status(200);
@@ -36,72 +36,94 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'SELECT * FROM games WHERE name = $1;';
             var query = client.query(q, [req.query.name.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to get game"));
+                    return next();
                 }
             });
 
             query.on('end', function (result) {
-                res.status(200);
-                res.send(JSON.stringify(result.rows[0]));
+                if (result.rows[0]) {
+                    res.status(200);
+                    res.send(JSON.stringify(result.rows[0]));
+                } else {
+                    res.status(400);
+                    res.send(JSON.stringify("Unable to get game"));
+                    return next();
+                }
             });
         });
     });
 
     /* 
-        Update Game row in DB.
+        Update session count for a game.
     */
-    // TODO: NOT WORKING YET
-    app.put('/api/games/update', function(req, res, next) {
+    app.put('/api/games/addsession', function(req, res, next) {
         pg.defaults.ssl = true;
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
-            var q = 'UPDATE games WHERE name = $1 SET (';
-
-            var query = client.query(q, params , function(err, result) {
+            // Get current session value
+            var q1 = 'SELECT * FROM games WHERE name = $1;';
+            var query1 = client.query(q1, [req.query.name.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to get game"));
+                    return next();
                 }
+            });
 
-                res.status(200);
-                res.send('OK');
+            var sessions = 0;
+            query1.on('end', function (result) {
+                var row = result.rows[0];
+                sessions = row.sessions;
+                sessions++;
+
+                // Update sessions
+                var q2 = 'UPDATE games SET sessions = $1 WHERE name = $2;';
+                var query2 = client.query(q2, [sessions, req.query.name.toLowerCase()], function(err, result) {
+                    if (err) {
+                        res.status(400);
+                        res.send(JSON.stringify("Unable to update game"));
+                        return next();
+                    }
+
+                    res.status(200);
+                    res.send('OK');
+                });
             });
         });
     });
 
     /* 
-        Remove Vote row from DB.
+        Remove Game row from DB.
     */
     app.delete('/api/games/remove', function(req, res, next) {
         pg.defaults.ssl = true;
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'DELETE FROM games WHERE name = $1;';
             var query = client.query(q, [req.query.name.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to delete game"));
+                    return next();
                 }
 
                 res.status(200);

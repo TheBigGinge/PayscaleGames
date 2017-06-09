@@ -10,11 +10,7 @@ Players
     /players/remove
         DELETE w/ querystring 'email'
     /players/addsession
-        PUT
-        {
-            "email": "galen.scovell@gmail.com",
-            "winner": true
-        }
+        PUT w/ querystring "email" and "winner" (boolean)
 
 Votes
     /votes/add
@@ -30,31 +26,22 @@ Votes
     /votes/remove
         DELETE w/ querystring "week"
     /votes/update
-        PUT (increments option vote if player has not already voted, vote must correspond to option)
-        {
-            "player_email": "galen.scovell@gmail.com",
-            "vote": "Terra Mystica"
-        }
+        PUT w/ querystring "player_email" and "vote" (must correspond to an option)
     
 Games
     /games/add
         POST
         {
-            "name": "Terra Mystica"
+            "name": "Terra Mystica",
+            "info_url": "https://boardgamegeek.com/boardgame/120677/terra-mystica",
+            "image_url": "https://boardgamegeek.com/image/1356616/terra-mystica"
         }
     /games/get
         GET w/ querystring "name"
     /games/remove
         DELETE w/querystring "name"
-    /games/update
-        PUT (name is required, all else that is not null will replace entry in DB
-        {
-            "name": "Terra Mystica",
-            "times_played": 1,
-            "average_play_time": 40,
-            "how_to_play_url": "",
-            "image_url": ""
-        }
+    /games/addsession
+        PUT w/ querystring "name"
 
 Sessions
     /sessions/add

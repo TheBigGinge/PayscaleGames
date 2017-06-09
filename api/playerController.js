@@ -10,16 +10,16 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'INSERT INTO players VALUES ($1, $2, $3, $4);';
             var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to add player"));
+                    return next();
                 }
 
                 res.status(200);
@@ -36,17 +36,17 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             // Get current session and win values
             var q1 = 'SELECT * FROM players WHERE email = $1;';
-            var query1 = client.query(q1, [req.body.email.toLowerCase()], function(err, result) {
+            var query1 = client.query(q1, [req.query.email.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to get player"));
+                    return next();
                 }
             });
 
@@ -58,17 +58,17 @@ module.exports = function(app, pg, database_url) {
                 wins = row.wins;
 
                 sessions++;
-                if (req.body.winner) {
+                if (req.query.winner) {
                     wins++;
                 }
 
                 // Update sessions and win values
                 var q2 = 'UPDATE players SET sessions = $1, wins = $2 WHERE email = $3;';
-                var query2 = client.query(q2, [sessions, wins, req.body.email.toLowerCase()], function(err, result) {
+                var query2 = client.query(q2, [sessions, wins, req.query.email.toLowerCase()], function(err, result) {
                     if (err) {
                         res.status(400);
-                        res.send(JSON.stringify(err.detail));
-                        return next(err);
+                        res.send(JSON.stringify("Unable to update player"));
+                        return next();
                     }
 
                     res.status(200);
@@ -86,22 +86,28 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'SELECT * FROM players WHERE email = $1;';
             var query = client.query(q, [req.query.email.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to get player"));
+                    return next();
                 }
             });
 
             query.on('end', function (result) {
-                res.status(200);
-                res.send(JSON.stringify(result.rows[0]));
+                if (result.rows[0]) {
+                    res.status(200);
+                    res.send(JSON.stringify(result.rows[0]));
+                } else {
+                    res.status(400);
+                    res.send(JSON.stringify("Unable to get player"));
+                    return next();
+                }
             });
         });
     });
@@ -114,16 +120,16 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'DELETE FROM players WHERE email = $1;';
             var query = client.query(q, [req.query.email.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to delete player"));
+                    return next();
                 }
 
                 res.status(200);

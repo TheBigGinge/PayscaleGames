@@ -10,7 +10,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
+                res.send(JSON.stringify("Unable to connect to DB"));
                 return next(err);
             }
 
@@ -36,22 +36,28 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'SELECT * FROM votes WHERE week = $1;';
             var query = client.query(q, [req.query.week], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to get vote"));
+                    return next();
                 }
             });
 
             query.on('end', function (result) {
-                res.status(200);
-                res.send(JSON.stringify(result.rows[0]));
+                if (result.rows[0]) {
+                    res.status(200);
+                    res.send(JSON.stringify(result.rows[0]));
+                } else {
+                    res.status(400);
+                    res.send(JSON.stringify("Unable to get vote"));
+                    return next();
+                }
             });
         });
     });
@@ -65,8 +71,8 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'UPDATE votes WHERE week = $1 SET (';
@@ -74,8 +80,8 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, params , function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to update vote"));
+                    return next();
                 }
 
                 res.status(200);
@@ -92,16 +98,16 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
+                res.send(JSON.stringify("Unable to connect to DB"));
+                return next();
             }
 
             var q = 'DELETE FROM votes WHERE week = $1;';
             var query = client.query(q, [req.query.week], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
+                    res.send(JSON.stringify("Unable to delete vote"));
+                    return next();
                 }
 
                 res.status(200);
