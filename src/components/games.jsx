@@ -12,7 +12,7 @@ let Games = ({ dispatch, games, showGameModal }) => {
 					  key={ game.title } />);
 	});
 
-	return <div className="games-wrapper">
+	return <div className="games-wrapper list-wrapper">
         {showGameModal && <AddGameModal dispatch={dispatch} />}
 		<h1>Games We Play</h1>
 		<button className="btn btn-default" onClick={(e) => dispatch(openAddGameModal(e))}>Add Game</button>

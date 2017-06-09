@@ -1,8 +1,10 @@
-import { HAS_SIGNED_IN, CLOSE_ADD_GAME_MODAL, OPEN_ADD_GAME_MODAL } from '../actions';
+import { HAS_SIGNED_IN, CLOSE_ADD_GAME_MODAL, OPEN_ADD_GAME_MODAL,
+         OPEN_ADD_PLAYA_MODAL, CLOSE_ADD_PLAYA_MODAL } from '../actions';
 
 const initialState = { 
   signedInSuccess: false,
-  showGameModal: false
+  showGameModal: false,
+  showPlayaModal: false
 };
 
 const mainState = (state = {}, action) => {
@@ -17,6 +19,14 @@ const mainState = (state = {}, action) => {
     	return Object.assign({}, state, {
     		showGameModal: false
     	});
+    case OPEN_ADD_PLAYA_MODAL:
+      return Object.assign({}, state, {
+        showPlayaModal: true
+      });
+    case CLOSE_ADD_PLAYA_MODAL:
+      return Object.assign({}, state, {
+        showPlayaModal: false
+      });
     default:
       return state
   }

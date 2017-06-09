@@ -12,7 +12,6 @@ let AddGameModal = ({ dispatch }) => {
 			   okText='Add Game'
 			   title='Add a Game'
 			   formId={formId}>
-			<h2>What a fine Body</h2>
 			<form id={formId} className="form-horizontal" onSubmit={(e) => dispatch(addGame(e))}>
 			  <div>
 			    <label htmlFor="gameTitle" className="control-label">Title</label>
