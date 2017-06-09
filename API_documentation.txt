@@ -9,14 +9,11 @@ Players
         GET w/ querystring 'email'
     /players/remove
         DELETE w/ querystring 'email'
-    /players/update
-        PUT (email is required, all else that is not null will replace entry in DB)
+    /players/addsession
+        PUT
         {
             "email": "galen.scovell@gmail.com",
-            "name": "GalenS",
-            "wins": 2,
-            "sessions": 2,
-            "profile_img_url": null
+            "winner": true
         }
 
 Votes

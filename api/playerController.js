@@ -1,5 +1,5 @@
 
-// CREATE TABLE players (email TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, sessions INT, wins INT, profile_img_url TEXT);
+// CREATE TABLE players (email TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, sessions INT NOT NULL, wins INT NOT NULL);
 
 module.exports = function(app, pg, database_url) {
     /* 
@@ -14,8 +14,8 @@ module.exports = function(app, pg, database_url) {
                 return next(err);
             }
 
-            var q = 'INSERT INTO players VALUES ($1, $2, $3, $4, $5);';
-            var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0, ''], function(err, result) {
+            var q = 'INSERT INTO players VALUES ($1, $2, $3, $4);';
+            var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0], function(err, result) {
                 if (err) {
                     res.status(400);
                     res.send(JSON.stringify(err.detail));
@@ -24,6 +24,56 @@ module.exports = function(app, pg, database_url) {
 
                 res.status(200);
                 res.send('OK');
+            });
+        });
+    });
+
+    /* 
+        Update Player row with a session and a win, if they did.
+    */
+    app.put('/api/player/addsession', function(req, res, next) {
+        pg.defaults.ssl = true;
+        pg.connect(database_url, function(err, client) {
+            if (err) {
+                res.status(400);
+                res.send(JSON.stringify(err.detail));
+                return next(err);
+            }
+
+            // Get current session and win values
+            var q1 = 'SELECT * FROM players WHERE email = $1;';
+            var query1 = client.query(q1, [req.body.email.toLowerCase()], function(err, result) {
+                if (err) {
+                    res.status(400);
+                    res.send(JSON.stringify(err.detail));
+                    return next(err);
+                }
+            });
+
+            var sessions = 0;
+            var wins = 0;
+            query1.on('end', function (result) {
+                var row = result.rows[0];
+                sessions = row.sessions;
+                wins = row.wins;
+
+                sessions++;
+                if (req.body.winner) {
+                    wins++;
+                }
+
+                // Update sessions and win values
+                var q2 = 'UPDATE players SET sessions = $1, wins = $2 WHERE email = $3;';
+                var query2 = client.query(q2, [sessions, wins, req.body.email.toLowerCase()], function(err, result) {
+                    if (err) {
+                        res.status(400);
+                        res.send(JSON.stringify(err.detail));
+                        return next(err);
+                    }
+
+                    res.status(200);
+                    res.send('OK');
+                });
             });
         });
     });
@@ -52,48 +102,6 @@ module.exports = function(app, pg, database_url) {
             query.on('end', function (result) {
                 res.status(200);
                 res.send(JSON.stringify(result.rows[0]));
-            });
-        });
-    });
-
-    /* 
-        Update Player row in DB.
-    */
-    // TODO: NOT WORKING YET
-    app.put('/api/player/update', function(req, res, next) {
-        pg.defaults.ssl = true;
-        pg.connect(database_url, function(err, client) {
-            if (err) {
-                res.status(400);
-                res.send(JSON.stringify(err.detail));
-                return next(err);
-            }
-
-            var q = 'UPDATE players WHERE email = $1 SET (';
-            var params = [req.body.email];
-            if (req.body.name) {
-                q += ('name = $' + curr);
-                params.push(req.body.name);
-            }
-            if (req.body.wins) {
-                changesArray.push('wins = ' + req.body.wins);
-            }
-            if (req.body.sessions) {
-                changesArray.push('sessions = ' + req.body.sessions);
-            }
-            if (req.body.profile_img_url) {
-                changesArray.push('profile_img_url = ' + req.body.profile_img_url);
-            }
-
-            var query = client.query(q, params , function(err, result) {
-                if (err) {
-                    res.status(400);
-                    res.send(JSON.stringify(err.detail));
-                    return next(err);
-                }
-
-                res.status(200);
-                res.send('OK');
             });
         });
     });
