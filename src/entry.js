@@ -40,7 +40,7 @@ render(
     	{ /* Tell the Router to use our enhanced history */ }
     	<Router history={history}>
       		<Route path="/" component={Header}>
-        		<IndexRoute component={Main}/>
+        		<IndexRoute component={Main} />
         		<Route path="/leaderboards" component={LeaderBoard}/>
         		<Route path="/players" component={PlayerPage} />
       		</Route>

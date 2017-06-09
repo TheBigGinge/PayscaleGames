@@ -1,3 +1,6 @@
+import { UPDATE_NEW_GAME_TITLE, UPDATE_NEW_GAME_IMAGE, UPDATE_NEW_GAME_DESCRIPTION,
+		 ADD_NEW_GAME_TO_LIST } from '../actions/index';
+
 const initialState = {
 	gamesList: [
 		{
@@ -15,11 +18,50 @@ const initialState = {
 			description: 'Be a clever word spy!',
 			img: 'https://images-na.ssl-images-amazon.com/images/I/91QlPgozOgL._SL1500_.jpg'
 		}
-	]
+	],
+	newGame: {
+		title: '',
+		description: '',
+		img: ''
+	}
 }
 
 const games = (state = initialState, action) => {
+	var newNewGame;
 	switch (action.type) {
+		case UPDATE_NEW_GAME_TITLE:
+			newNewGame = Object.assign({}, state.newGame, {
+				title: action.title
+			});
+			return Object.assign({}, state, {
+				newGame: newNewGame
+			});
+		case UPDATE_NEW_GAME_DESCRIPTION:
+			newNewGame = Object.assign({}, state.newGame, {
+				description: action.description
+			});
+			return Object.assign({}, state, {
+				newGame: newNewGame
+			});
+		case UPDATE_NEW_GAME_IMAGE:
+			newNewGame = Object.assign({}, state.newGame, {
+				img: action.image
+			});
+			return Object.assign({}, state, {
+				newGame: newNewGame
+			});
+		case ADD_NEW_GAME_TO_LIST:
+			let newGamesList = Object.assign([], state.gamesList);
+			newGamesList.push(state.newGame);
+			newNewGame = Object.assign({}, state.newGame, {
+				description: '',
+				title: '',
+				img: ''
+			});
+			return Object.assign({}, state, {
+				newGame: newNewGame,
+				gamesList: newGamesList
+			});
 		default:
 			return state;
 	}

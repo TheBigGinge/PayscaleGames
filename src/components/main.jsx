@@ -18,7 +18,7 @@ class Main extends React.Component {
 
     render() {
         let { showGameModal, dispatch } = this.props;
-        console.log(showGameModal);
+
         return <div className="main">
             <div id='backgroundImage' >
                 <div className="container">

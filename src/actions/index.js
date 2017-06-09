@@ -1,7 +1,10 @@
 export const HAS_SIGNED_IN = 'HAS_SIGNED_IN';
 export const CLOSE_ADD_GAME_MODAL = 'CLOSE_ADD_GAME_MODAL';
 export const OPEN_ADD_GAME_MODAL = 'OPEN_ADD_GAME_MODAL';
-
+export const UPDATE_NEW_GAME_TITLE = 'UPDATE_NEW_GAME_TITLE';
+export const UPDATE_NEW_GAME_IMAGE = 'UPDATE_NEW_GAME_IMAGE';
+export const UPDATE_NEW_GAME_DESCRIPTION = 'UPDATE_NEW_GAME_DESCRIPTION';
+export const ADD_NEW_GAME_TO_LIST = 'ADD_NEW_GAME_TO_LIST';
 
 export const hasSignedIn = () => {
 	return {
@@ -10,7 +13,6 @@ export const hasSignedIn = () => {
 };
 
 export const openAddGameModal = () => {
-	console.log('opening');
 	return {
 		type: OPEN_ADD_GAME_MODAL
 	};
@@ -23,5 +25,39 @@ export const closeAddGameModal = () => {
 };
 
 export const addGame = (e) => {
-	console.log(e);
+	e.preventDefault();
+	return (dispatch) => {
+		dispatch(closeAddGameModal());
+		dispatch(addNewGameToList());
+	}	
+}
+
+export const updateNewGameImage = (e) => {
+	let image = e.target.value;
+	return {
+		type: UPDATE_NEW_GAME_IMAGE,
+		image
+	}
+}
+
+export const updateNewGameDescription = (e) => {
+	let description = e.target.value;
+	return {
+		type: UPDATE_NEW_GAME_DESCRIPTION,
+		description
+	}
+}
+
+export const updateNewGameTitle = (e) => {
+	let title = e.target.value;
+	return {
+		type: UPDATE_NEW_GAME_TITLE,
+		title: e.target.value
+	}
+}
+
+const addNewGameToList = () => {
+	return {
+		type: ADD_NEW_GAME_TO_LIST
+	}
 }
