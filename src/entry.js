@@ -10,7 +10,8 @@ import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-rou
 import Main from './components/main';
 import LeaderBoard from './components/LeaderBoard';
 import Header from './components/header';
-import PlayerPage from './components/playerPage';
+import Players from './components/players';
+import Games from './components/games';
 
 //Business below
 //Thank you internets.
@@ -42,7 +43,8 @@ render(
       		<Route path="/" component={Header}>
         		<IndexRoute component={Main} />
         		<Route path="/leaderboards" component={LeaderBoard}/>
-        		<Route path="/players" component={PlayerPage} />
+        		<Route path="/players" component={Players} />
+            <Route path="/games" component={Games} />
       		</Route>
     	</Router>
 	</Provider>,

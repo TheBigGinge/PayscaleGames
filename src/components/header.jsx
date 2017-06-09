@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
 class Header extends React.Component {
 
@@ -25,6 +25,7 @@ class Header extends React.Component {
 			    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul className="nav navbar-nav">
 			        <li><Link to="/players" >Players <span className="sr-only"></span></Link></li>
+			        <li><Link to="/Games" >Games We Play</Link></li>
 			        <li><Link to="/LeaderBoards" >Leaderboards</Link></li>
 			        <li><Link to="/LeaderBoards" >Weekly Game</Link></li>
 			      </ul>
@@ -44,6 +45,7 @@ class Header extends React.Component {
 			    </div>
 			  </div>
 			</nav>
+
 			{this.props.children}
 		</div>
 	}

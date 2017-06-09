@@ -1,8 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AddGameModal from './addGameModal';
-import Games from './games'
-import Players from './players';
 import '../../css/main.scss';
 
 class Main extends React.Component {
