@@ -8,7 +8,7 @@ import { render } from 'react-dom';
 import { Router, Route, browserHistory, hashHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import Main from './components/main';
-import LeaderBoard from './components/LeaderBoard';
+import LeaderBoard from './components/leaderBoard';
 import Header from './components/header';
 import Players from './components/players';
 import Games from './components/games';
