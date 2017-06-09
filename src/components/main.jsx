@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AddGameModal from './addGameModal';
 import Games from './games'
 import Players from './players';
+import '../../css/main.scss';
 
 class Main extends React.Component {
 
@@ -18,11 +19,12 @@ class Main extends React.Component {
     render() {
         let { showGameModal, dispatch } = this.props;
 
-        return <div>
-            { this._fancyFucnctionForGalen() }
-            {showGameModal && <AddGameModal dispatch={dispatch} />}
-            <Games />
-            <Players />
+        return <div className="main">
+            <div id='backgroundImage' >
+                <div className="container">
+                    Welcome to the 3rd Floor Gaming Group!
+                </div>
+            </div>
         </div>  
     }
 };

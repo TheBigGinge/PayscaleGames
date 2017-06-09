@@ -51,7 +51,6 @@ const games = (state = initialState, action) => {
 				newGame: newNewGame
 			});
 		case ADD_NEW_GAME_TO_LIST:
-			debugger;
 			let newGamesList = Object.assign([], state.gamesList);
 			newGamesList.push(state.newGame);
 			newNewGame = Object.assign({}, state.newGame, {

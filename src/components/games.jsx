@@ -4,8 +4,7 @@ import Game from './game';
 import '../../css/games.scss';
 import { openAddGameModal } from '../actions/index';
 
-let Games = ({ dispatch, games }) => {
-	debugger;
+let Games = ({ dispatch, games }) => {	
 	let gamesList = games && games.map((game, index) => {
 		return (<Game game={ game }
 					  isEven={ index % 2 == 0}

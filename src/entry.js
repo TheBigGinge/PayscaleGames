@@ -9,7 +9,8 @@ import { Router, Route, browserHistory, hashHistory, IndexRoute } from 'react-ro
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import Main from './components/main';
 import LeaderBoard from './components/LeaderBoard';
-import Header from './components/header.jsx';
+import Header from './components/header';
+import PlayerPage from './components/playerPage';
 
 //Business below
 //Thank you internets.
@@ -41,6 +42,7 @@ render(
       		<Route path="/" component={Header}>
         		<IndexRoute component={Main} />
         		<Route path="/leaderboards" component={LeaderBoard}/>
+        		<Route path="/players" component={PlayerPage} />
       		</Route>
     	</Router>
 	</Provider>,
