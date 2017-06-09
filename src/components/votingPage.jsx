@@ -15,11 +15,15 @@ class VotingPage extends React.Component {
 	render() {
 		return <div className="voting-page">
 			{fakeData.forEach( (game, index) => {
+				debugger
 				if (index % 2 === 0) {
 					return <div className="">
 						{ game.game }
 					</div>
 				}
+				return <div className="not-even">
+					{game.game}
+				</div>
 			} )}
 		</div>
 	}
