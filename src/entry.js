@@ -12,6 +12,7 @@ import LeaderBoard from './components/leaderBoard';
 import Header from './components/header';
 import Players from './components/players';
 import Games from './components/games';
+import VotingPage from './components/votingPage';
 
 //Business below
 //Thank you internets.
@@ -44,7 +45,8 @@ render(
         		<IndexRoute component={Main} />
         		<Route path="/leaderboards" component={LeaderBoard}/>
         		<Route path="/players" component={Players} />
-            <Route path="/games" component={Games} />
+            	<Route path="/games" component={Games} />
+            	<Route path="/vote" component={VotingPage} />
       		</Route>
     	</Router>
 	</Provider>,
