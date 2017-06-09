@@ -25,6 +25,14 @@ h2 {
 
 .list-item {    
     padding: 10px 0 10px 0;
+    overflow: auto;
+
+    img {
+        height: 200px;
+        width: auto;
+        float: left;
+        margin-right: 10px;
+    }
 }
 
 .highlight {
