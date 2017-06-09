@@ -6,7 +6,7 @@ const fakeData = [
 	{player: 'Ryan Moore', Wins: 4, Losses: 4},
 	{player: 'Ashley Dillinger', Wins: 2, Losses: 4},
 	{player: 'Jim Skerrit', Wins: 1, Losses: 4},
-	{player: 'Mike Janses', Wins: 3, Losses: 4}
+	{player: 'Mike Jansen', Wins: 3, Losses: 4}
 ]
 {/*
 let CustomRowComponent = ({ rowData }) => (

@@ -37,7 +37,9 @@ module.exports = {
         loader: 'style!css!sass',
         include: path.join(__dirname, 'css') },
       { test: /\.css$/,
-        loader: 'style!css' }
+        loader: 'style!css' },
+      { test: /\.png$/, 
+        loader: "url-loader?mimetype=image/png" }
     ]
   }
 }

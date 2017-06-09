@@ -25,7 +25,7 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.png']
+    extensions: ['', '.js', '.jsx']
   },
 
   module: {
@@ -39,6 +39,8 @@ module.exports = {
       { test: /\.scss?$/,
         loader: 'style!css!sass',
         include: path.join(__dirname, 'css') },
+      { test: /\.png$/, 
+        loader: "url-loader?mimetype=image/png" },
     ]
   }
 }
