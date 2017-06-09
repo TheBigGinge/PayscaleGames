@@ -39,8 +39,8 @@ module.exports = {
       { test: /\.scss?$/,
         loader: 'style!css!sass',
         include: path.join(__dirname, 'css') },
-      { test: /\.png$/, 
-        loader: "url-loader?mimetype=image/png" },
+      { test: /\.(jpe?g|png|gif|svg)$/i, 
+        loader: "file-loader?name=./images/[name].[ext]" },
     ]
   }
 }

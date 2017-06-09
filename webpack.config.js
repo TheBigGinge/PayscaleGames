@@ -38,8 +38,8 @@ module.exports = {
         include: path.join(__dirname, 'css') },
       { test: /\.css$/,
         loader: 'style!css' },
-      { test: /\.png$/, 
-        loader: "url-loader?mimetype=image/png" }
+      { test: /\.(jpe?g|png|gif|svg)$/i, 
+        loader: "file-loader?name=./images/[name].[ext]" },
     ]
   }
 }

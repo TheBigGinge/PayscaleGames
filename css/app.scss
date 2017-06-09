@@ -7,16 +7,32 @@ a:hover {
 }
 
 button {
-    background-color: #D3D8B0 !important;
+    background-color: #A5AF99 !important;
     color: white !important;
 }
 
 button:hover {
-    background-color: #A5AF99 !important;
+    background-color: #D3D8B0 !important;
 }
 
 h2 {
     color: #5A5C69;
+}
+
+.list-wrapper {    
+    margin: 10px;
+}
+
+.list-item {    
+    padding: 10px 0 10px 0;
+    overflow: auto;
+
+    img {
+        height: 200px;
+        width: auto;
+        float: left;
+        margin-right: 10px;
+    }
 }
 
 .highlight {
