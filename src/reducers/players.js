@@ -5,13 +5,24 @@ const initialState = {
 		{
 			name: "Ashley Dillinger",
 			wins: "All the wins!",
-			losses: "NONE"
+			losses: "NONE",
+			email: "ashley.dillinger@payscale.com",
+			img: "../../images/ashley.png"
 		},
 		{
 			name: "Jim Skerritt",
 			wins: "NONE",
-			losses: "All the losses! (with rage)"
+			losses: "All the losses! (with rage)",
+			email: "jims@payscale.com",
+			img: "../../images/Jimbo.png"
 		},
+		{
+			name: "Ryan Moore",
+			wins: 3,
+			losses: 2,
+			email: "jims@payscale.com",
+			img: "../../images/Ryan.png"
+		}
 	],
 	newPlaya: {
 		name: '',
