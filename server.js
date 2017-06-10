@@ -5,7 +5,6 @@ var app = express();
 var pg = require('pg');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var helmet = require('helmet');
 
 var isDevelopment = (process.env.NODE_ENV !== 'production');
 var static_path = path.join(__dirname, 'public');
@@ -13,7 +12,6 @@ var static_path = path.join(__dirname, 'public');
 app.use('/images', express.static(__dirname + '/images'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
 
 // Setup API
 if (isDevelopment) {
