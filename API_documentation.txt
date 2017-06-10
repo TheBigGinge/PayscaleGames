@@ -3,7 +3,8 @@ Players
         POST (name and email both required, email is used as primary key)
         {
             "email": "galen.scovell@gmail.com",
-            "name": "GalenS"
+            "name": "GalenS",
+            "img_url": ""
         }
     /players/get
         GET w/ querystring 'email'

@@ -1,5 +1,5 @@
 
-// CREATE TABLE players (email TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, sessions INT NOT NULL, wins INT NOT NULL);
+// CREATE TABLE players (email TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, sessions INT NOT NULL, wins INT NOT NULL, img_url TEXT);
 
 module.exports = function(app, pg, database_url) {
     /* 
@@ -14,8 +14,13 @@ module.exports = function(app, pg, database_url) {
                 return next();
             }
 
-            var q = 'INSERT INTO players VALUES ($1, $2, $3, $4);';
-            var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0], function(err, result) {
+            var img_url = "";
+            if (req.body.img_url) {
+                img_url = req.body.img_url;
+            }
+
+            var q = 'INSERT INTO players VALUES ($1, $2, $3, $4, $5);';
+            var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0, img_url], function(err, result) {
                 if (err) {
                     res.status(400);
                     res.send('Unable to add player: ' + err.detail);
