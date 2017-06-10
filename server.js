@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
-// Setup API controllers
+// Setup API
 if (isDevelopment) {
   process.env.DATABASE_URL = 'postgres://sixknbsogjnqoz:5b14450def84fead3d307cb453463f85e0ca07114c4eddd69d215c5f4f778ca1@ec2-23-23-237-68.compute-1.amazonaws.com:5432/d3prn68aiagr7s';
 }

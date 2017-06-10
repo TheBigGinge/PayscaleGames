@@ -10,7 +10,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -18,7 +18,7 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, [req.body.name.toLowerCase(), 0, req.body.info_url, req.body.image_url], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to add new game"));
+                    res.send('Unable to add new game: ' + err.detail);
                     return next();
                 }
 
@@ -36,7 +36,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -44,7 +44,7 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, [req.query.name.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to get game"));
+                    res.send('Unable to get game: ' + err.detail);
                     return next();
                 }
             });
@@ -55,7 +55,7 @@ module.exports = function(app, pg, database_url) {
                     res.send(JSON.stringify(result.rows[0]));
                 } else {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to get game"));
+                    res.send('Unable to get game: not found');
                     return next();
                 }
             });
@@ -70,7 +70,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -79,7 +79,7 @@ module.exports = function(app, pg, database_url) {
             var query1 = client.query(q1, [req.query.name.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to get game"));
+                    res.send('Unable to get game: ' + err.detail);
                     return next();
                 }
             });
@@ -87,6 +87,11 @@ module.exports = function(app, pg, database_url) {
             var sessions = 0;
             query1.on('end', function (result) {
                 var row = result.rows[0];
+                if (!row) {
+                    res.status(400);
+                    res.send('Unable to update game: not found');
+                    return next();
+                }
                 sessions = row.sessions;
                 sessions++;
 
@@ -95,7 +100,7 @@ module.exports = function(app, pg, database_url) {
                 var query2 = client.query(q2, [sessions, req.query.name.toLowerCase()], function(err, result) {
                     if (err) {
                         res.status(400);
-                        res.send(JSON.stringify("Unable to update game"));
+                        res.send('Unable to update game: ' + err.detail);
                         return next();
                     }
 
@@ -114,7 +119,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -122,7 +127,7 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, [req.query.name.toLowerCase()], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to delete game"));
+                    res.send('Unable to delete game: ' + err.detail);
                     return next();
                 }
 

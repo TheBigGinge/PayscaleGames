@@ -1,5 +1,5 @@
 
-// CREATE TABLE sessions (week INT NOT NULL, game TEXT NOT NULL, players TEXT[] NOT NULL, play_time REAL NOT NULL, winner TEXT NOT NULL);
+// CREATE TABLE sessions (week INT PRIMARY KEY NOT NULL, game TEXT NOT NULL, players TEXT[] NOT NULL, play_time REAL NOT NULL, winner TEXT NOT NULL);
 
 module.exports = function(app, pg, database_url) {
     /* 
@@ -10,7 +10,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -18,7 +18,7 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, [req.body.week, req.body.game.toLowerCase(), req.body.players, req.body.play_time, req.body.winner], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to add session"));
+                    res.send('Unable to add session: ' + err.detail);
                     return next();
                 }
 
@@ -36,7 +36,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -44,7 +44,7 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, [req.query.week], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to get session"));
+                    res.send('Unable to get session: ' + err.detail);
                     return next();
                 }
             });
@@ -55,7 +55,7 @@ module.exports = function(app, pg, database_url) {
                     res.send(JSON.stringify(result.rows[0]));
                 } else {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to get session"));
+                    res.send('Unable to get session: not found');
                     return next();
                 }
             });
@@ -70,7 +70,7 @@ module.exports = function(app, pg, database_url) {
         pg.connect(database_url, function(err, client) {
             if (err) {
                 res.status(400);
-                res.send(JSON.stringify("Unable to connect to DB"));
+                res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
 
@@ -78,7 +78,7 @@ module.exports = function(app, pg, database_url) {
             var query = client.query(q, [req.query.week], function(err, result) {
                 if (err) {
                     res.status(400);
-                    res.send(JSON.stringify("Unable to delete session"));
+                    res.send('Unable to delete session: ' + err.detail);
                     return next();
                 }
 
