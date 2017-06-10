@@ -1,5 +1,5 @@
 
-// CREATE TABLE games (name TEXT PRIMARY KEY NOT NULL, sessions INT NOT NULL, info_url TEXT NOT NULL, image_url TEXT NOT NULL);
+// CREATE TABLE games (name TEXT PRIMARY KEY NOT NULL, sessions INT NOT NULL, info_url TEXT NOT NULL, img_url TEXT NOT NULL);
 
 module.exports = function(app, pg, database_url) {
     /* 
@@ -15,7 +15,7 @@ module.exports = function(app, pg, database_url) {
             }
 
             var q = 'INSERT INTO games VALUES ($1, $2, $3, $4);';
-            var query = client.query(q, [req.body.name.toLowerCase(), 0, req.body.info_url, req.body.image_url], function(err, result) {
+            var query = client.query(q, [req.body.name.toLowerCase(), 0, req.body.info_url, req.body.img_url], function(err, result) {
                 if (err) {
                     res.status(400);
                     res.send('Unable to add new game: ' + err.detail);

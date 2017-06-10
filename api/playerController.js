@@ -13,14 +13,9 @@ module.exports = function(app, pg, database_url) {
                 res.send('Unable to connect to DB: ' + err.detail);
                 return next();
             }
-
-            var img_url = "";
-            if (req.body.img_url) {
-                img_url = req.body.img_url;
-            }
-
+            
             var q = 'INSERT INTO players VALUES ($1, $2, $3, $4, $5);';
-            var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0, img_url], function(err, result) {
+            var query = client.query(q, [req.body.email.toLowerCase(), req.body.name, 0, 0, req.body.img_url], function(err, result) {
                 if (err) {
                     res.status(400);
                     res.send('Unable to add player: ' + err.detail);
