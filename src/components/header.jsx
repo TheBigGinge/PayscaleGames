@@ -49,6 +49,7 @@ class Header extends React.Component {
 			        <li><Link to="/Games" >Games We Play</Link></li>
 			        <li><Link to="/LeaderBoards" >Leaderboards</Link></li>
 			        <li><Link to="/vote" >Weekly Game</Link></li>
+			        <li><Link to="/enter">Enter Results</Link></li>
 			      </ul>
 			      <ul className="nav navbar-nav navbar-right">
 			        <li><div id="google-sign-on" className="g-signin2" data-onsuccess="function onSignIn() {

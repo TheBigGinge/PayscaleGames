@@ -1,0 +1,31 @@
+.voting-page {
+
+    .voting-game {
+        margin-left: 40px;
+        width: 500px;
+
+        .header {
+            font-size: 30px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .body {
+
+        }
+
+        .voting-booth {
+            display: inline-block;
+            float: right;
+
+            .voting-body {
+                text-align: center;
+
+                .check-box {
+                    text-align: center;
+                    line-height: 100%;
+                }
+            }
+        }
+    }
+}

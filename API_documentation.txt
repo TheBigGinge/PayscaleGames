@@ -1,0 +1,74 @@
+#############
+## Players ##
+#############
+:8080/api/players/add POST
+    (email is primary key, all entries required (can be empty strings))
+    {
+        "email": "galen.scovell@gmail.com",
+        "name": "GalenS",
+        "img_url": ""
+    }
+:8080/api/players/get GET
+    querystring param "email"
+:8080/api/players/remove DELETE
+    querystring param "email"
+:8080/api/players/addsession PUT
+    querystring params "email" and "winner" (boolean)
+
+
+###########
+## Votes ## 
+###########
+:8080/api/votes/add POST
+    (week is primary key, all entries required (can be empty strings))
+    {
+        "week": 1,
+        "option_1_name": "Scythe",
+        "option_2_name": "Agricola",
+        "option_3_name": "Terra Mystica"
+    }
+:8080/api/votes/get GET
+    querystring param "week"
+:8080/api/votes/remove DELETE
+    querystring param "week"
+:8080/api/votes/update PUT
+    querystring params "email", "week", and "vote" (must correspond to an option)
+    
+
+###########
+## Games ##
+###########
+:8080/api/games/add POST
+    (name is primary key, all entries required (can be empty strings))
+    {
+        "name": "Terra Mystica",
+        "info_url": "https://boardgamegeek.com/boardgame/120677/terra-mystica",
+        "image_url": "https://boardgamegeek.com/image/1356616/terra-mystica"
+    }
+:8080/api/games/get GET
+    querystring param "name"
+:8080/api/games/remove DELETE
+    querystring param "name"
+:8080/api/games/addsession PUT
+    querystring param "name"
+
+
+##############
+## Sessions ##
+##############
+:8080/api/sessions/add POST
+    (week is primary key, all entries required (can be empty strings))
+    {
+        "week": 1,
+        "game": "Terra Mystica",
+        "players": [
+            "galen.scovell@payscale.com",
+            "ryan.moore@payscale.com"
+        ],
+        "play_time": 120,
+        "winner": "galen.scovell@payscale.com"
+    }
+:8080/api/sessions/get GET
+    querystring param "week"
+:8080/api/sessions/remove DELETE
+    querystring param "week"

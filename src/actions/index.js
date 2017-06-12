@@ -12,7 +12,12 @@ export const UPDATE_NEW_PLAYA_IMAGE = 'UPDATE_NEW_PLAYA_IMAGE';
 export const UPDATE_NEW_PLAYA_EMAIL = 'UPDATE_NEW_PLAYA_EMAIL';
 export const UPDATE_NEW_PLAYA_NAME = 'UPDATE_NEW_PLAYA_NAME';
 export const ADD_NEW_PLAYA_TO_LIST = 'ADD_NEW_PLAYA_TO_LIST';
-
+export const VOTE_FOR_GAME = 'VOTE_FOR_GAME';
+export const UPDATE_GAME = 'UPDATE_GAME';
+export const ADD_WINNER = 'ADD_WINNER';
+export const UPDATE_WINNER = 'UPDATE_WINNER';
+export const REMOVE_WINNER = 'REMOVE_WINNER';
+export const SUBMIT_RESULTS = 'SUBMIT_RESULTS';
 
 export const hasSignedIn = () => {
 	return {
@@ -43,7 +48,7 @@ export const addGame = (e) => {
 	return (dispatch) => {
 		dispatch(closeAddGameModal());
 		dispatch(addNewGameToList());
-	}	
+	}
 }
 
 export const updateNewGameImage = (e) => {
@@ -93,7 +98,7 @@ export const addPlaya = (e) => {
 	return (dispatch) => {
 		dispatch(closeAddPlayaModal());
 		dispatch(addNewPlayaToList());
-	}	
+	}
 }
 
 export const updateNewPlayaImage = (e) => {
@@ -120,8 +125,50 @@ export const updateNewPlayaName = (e) => {
 	}
 }
 
+export const updateGame = (game) => {
+	return {
+		type: UPDATE_GAME,
+		game
+	}
+}
+
+export const addWinner = () => {
+	return {
+		type: ADD_WINNER
+	}
+}
+
+export const updateWinner = (index, winner) => {
+	return {
+		type: UPDATE_WINNER,
+		index,
+		winner
+	}
+}
+
+export const removeWinner = (index) => {
+	return {
+		type: REMOVE_WINNER,
+		index
+	}
+}
+
+export const submitResults = () => {
+	return {
+		type: SUBMIT_RESULTS
+	}
+}
+
 const addNewPlayaToList = () => {
 	return {
 		type: ADD_NEW_PLAYA_TO_LIST
+	}
+}
+
+export const voteForGame = (game, value) => {
+	return {
+		type: VOTE_FOR_GAME,
+		game,
+		value
 	}
 }

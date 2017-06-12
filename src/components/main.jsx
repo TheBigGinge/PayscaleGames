@@ -8,11 +8,6 @@ class Main extends React.Component {
         super(props);
     }
 
-
-    _fancyFucnctionForGalen() {
-        return 'Hello Galen!';
-    }
-
     render() {
         let { showGameModal, dispatch } = this.props;
 

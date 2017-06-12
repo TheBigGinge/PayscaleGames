@@ -40,7 +40,7 @@ module.exports = {
         loader: 'style!css!sass',
         include: path.join(__dirname, 'css') },
       { test: /\.(jpe?g|png|gif|svg)$/i, 
-        loader: "file-loader?name=/public/icons/[name].[ext]" },
+        loader: "file-loader?name=./images/[name].[ext]" },
     ]
   }
 }
