@@ -11,6 +11,7 @@ export const UPDATE_NEW_PLAYA_IMAGE = 'UPDATE_NEW_PLAYA_IMAGE';
 export const UPDATE_NEW_PLAYA_EMAIL = 'UPDATE_NEW_PLAYA_EMAIL';
 export const UPDATE_NEW_PLAYA_NAME = 'UPDATE_NEW_PLAYA_NAME';
 export const ADD_NEW_PLAYA_TO_LIST = 'ADD_NEW_PLAYA_TO_LIST';
+export const VOTE_FOR_GAME = 'VOTE_FOR_GAME';
 
 
 export const hasSignedIn = () => {
@@ -116,5 +117,13 @@ export const updateNewPlayaName = (e) => {
 const addNewPlayaToList = () => {
 	return {
 		type: ADD_NEW_PLAYA_TO_LIST
+	}
+}
+
+export const voteForGame = (game, value) => {
+	return {
+		type: VOTE_FOR_GAME,
+		game,
+		value
 	}
 }
