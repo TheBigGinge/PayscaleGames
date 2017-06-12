@@ -16,7 +16,6 @@ let Players = ({ dispatch, players, showPlayaModal, signedInSuccess }) => {
 		<h1>Playa Stats</h1>
 		<button className="btn btn-default" onClick={(e) => dispatch(openAddPlayaModal(e))}>Add Player</button>
 		{ playerList }
-		Business
 	</div>;
 }
 
