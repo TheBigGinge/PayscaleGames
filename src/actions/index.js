@@ -112,6 +112,9 @@ const addPlayaToDb = (getState) => {
 	        "name": newPlaya.name,
 	        "img_url": newPlaya.img
 	    }
+	},
+	(result) => {
+		console.log(result);
 	})
 };
 
