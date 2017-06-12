@@ -2,7 +2,7 @@ import { HAS_SIGNED_IN, CLOSE_ADD_GAME_MODAL, OPEN_ADD_GAME_MODAL,
          OPEN_ADD_PLAYA_MODAL, CLOSE_ADD_PLAYA_MODAL, HAS_SIGNED_OUT } from '../actions';
 
 const initialState = { 
-  signedInSuccess: false,
+  signedInSuccess: true,
   showGameModal: false,
   showPlayaModal: false
 };

@@ -14,7 +14,7 @@ let Players = ({ dispatch, players, showPlayaModal, signedInSuccess }) => {
 	return <div className="players-wrapper list-wrapper">
 		{showPlayaModal && <AddPlayaModal dispatch={dispatch} />}
 		<h1>Playa Stats</h1>
-		{signedInSuccess && <button className="btn btn-default" onClick={(e) => dispatch(openAddPlayaModal(e))}>Add Playa</button>}
+		<button className="btn btn-default" onClick={(e) => dispatch(openAddPlayaModal(e))}>Add Player</button>
 		{ playerList }
 		Business
 	</div>;

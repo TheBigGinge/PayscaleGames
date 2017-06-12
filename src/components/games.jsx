@@ -15,7 +15,7 @@ let Games = ({ dispatch, games, showGameModal, signedInSuccess }) => {
 	return <div className="games-wrapper list-wrapper">
         {showGameModal && <AddGameModal dispatch={dispatch} />}
 		<h1>Games We Play</h1>
-		{signedInSuccess && <button className="btn btn-default" onClick={(e) => dispatch(openAddGameModal(e))}>Add Game</button>}
+		<button className="btn btn-default" onClick={(e) => dispatch(openAddGameModal(e))}>Add Game</button>
 		{ gamesList }
 	</div>;
 };

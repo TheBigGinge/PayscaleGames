@@ -13,7 +13,7 @@ class Header extends React.Component {
         dispatch(hasSignedOut());
 	}
 
-	onSignIn() {
+	onSignIn(googleUser) {
 		debugger;
 		let { dispatch, signedInSuccess } = this.props;
 		var profile = googleUser.getBasicProfile();
@@ -51,28 +51,8 @@ class Header extends React.Component {
 			        <li><Link to="/vote" >Weekly Game</Link></li>
 			        <li><Link to="/enter">Enter Results</Link></li>
 			      </ul>
-			      <ul className="nav navbar-nav navbar-right">
-			        <li><div id="google-sign-on" className="g-signin2" data-onsuccess="function onSignIn() {
-						debugger;
-						let { dispatch, signedInSuccess } = this.props;
-						var profile = googleUser.getBasicProfile();
-				        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-				        console.log('Name: ' + profile.getName());
-				        console.log('Image URL: ' + profile.getImageUrl());
-				        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-				        dispatch(hasSignedIn());
-					}"></div></li>
-			        <li><a href="#" onClick={() => this.signOut()}>Sign out</a></li>
-			        <li className="dropdown">
-			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-			          <ul className="dropdown-menu">
-			            <li><a href="#">Action</a></li>
-			            <li><a href="#">Another action</a></li>
-			            <li><a href="#">Something else here</a></li>
-			            <li role="separator" className="divider"></li>
-			            <li><a href="#">Separated link</a></li>
-			          </ul>
-			        </li>
+			      <ul className="nav navbar-nav navbar-right">			        
+			        <li><div id="google-sign-on" className="g-signin2" data-onsuccess="onSignIn"></div></li>			        
 			      </ul>
 			    </div>
 			  </div>
@@ -92,3 +72,15 @@ const mapStateToProps = (state) => {
 Header = connect(mapStateToProps)(Header);
 
 export default Header;
+
+// <li className="dropdown">
+//   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+//   <ul className="dropdown-menu">
+//     <li><a href="#">Action</a></li>
+//     <li><a href="#">Another action</a></li>
+//     <li><a href="#">Something else here</a></li>
+//     <li role="separator" className="divider"></li>
+//     <li><a href="#">Separated link</a></li>
+//   </ul>
+// </li>
+//<li><a href="#" onClick={() => this.signOut()}>Sign out</a></li>
