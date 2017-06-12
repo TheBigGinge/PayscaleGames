@@ -1,12 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { hasSignedIn, hasSignedOut } from '../actions/index';
 
 class Header extends React.Component {
+	signOut() {
+		let { dispatch, signedInSuccess } = this.props;
+		var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+        dispatch(hasSignedOut());
+	}
+
+	onSignIn() {
+		debugger;
+		let { dispatch, signedInSuccess } = this.props;
+		var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        dispatch(hasSignedIn());
+	}
 
 	constructor(props) {
 		super(props);
+		this.onSignIn = this.onSignIn.bind(this);
 	}
-
 
 	render() {
 	 	return <div>
@@ -30,7 +51,17 @@ class Header extends React.Component {
 			        <li><Link to="/vote" >Weekly Game</Link></li>
 			      </ul>
 			      <ul className="nav navbar-nav navbar-right">
-			        <li><a href="#">Link</a></li>
+			        <li><div id="google-sign-on" className="g-signin2" data-onsuccess="function onSignIn() {
+						debugger;
+						let { dispatch, signedInSuccess } = this.props;
+						var profile = googleUser.getBasicProfile();
+				        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+				        console.log('Name: ' + profile.getName());
+				        console.log('Image URL: ' + profile.getImageUrl());
+				        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+				        dispatch(hasSignedIn());
+					}"></div></li>
+			        <li><a href="#" onClick={() => this.signOut()}>Sign out</a></li>
 			        <li className="dropdown">
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
 			          <ul className="dropdown-menu">
@@ -50,5 +81,13 @@ class Header extends React.Component {
 		</div>
 	}
 }
+
+const mapStateToProps = (state) => {
+    return {
+        signedInSuccess: state.mainState.signedInSuccess
+    };
+};
+
+Header = connect(mapStateToProps)(Header);
 
 export default Header;

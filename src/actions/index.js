@@ -1,4 +1,5 @@
 export const HAS_SIGNED_IN = 'HAS_SIGNED_IN';
+export const HAS_SIGNED_OUT = 'HAS_SIGNED_OUT';
 export const CLOSE_ADD_GAME_MODAL = 'CLOSE_ADD_GAME_MODAL';
 export const OPEN_ADD_GAME_MODAL = 'OPEN_ADD_GAME_MODAL';
 export const UPDATE_NEW_GAME_TITLE = 'UPDATE_NEW_GAME_TITLE';
@@ -15,7 +16,13 @@ export const ADD_NEW_PLAYA_TO_LIST = 'ADD_NEW_PLAYA_TO_LIST';
 
 export const hasSignedIn = () => {
 	return {
-		type: 'HAS_SIGNED_IN'
+		type: HAS_SIGNED_IN
+	};
+};
+
+export const hasSignedOut = () => {
+	return {
+		type: HAS_SIGNED_OUT
 	};
 };
 

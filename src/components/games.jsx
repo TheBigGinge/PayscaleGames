@@ -5,7 +5,7 @@ import '../../css/games.scss';
 import { openAddGameModal } from '../actions/index';
 import AddGameModal from './addGameModal';
 
-let Games = ({ dispatch, games, showGameModal }) => {	
+let Games = ({ dispatch, games, showGameModal, signedInSuccess }) => {	
 	let gamesList = games && games.map((game, index) => {
 		return (<Game game={ game }
 					  isEven={ index % 2 == 0}
@@ -15,7 +15,7 @@ let Games = ({ dispatch, games, showGameModal }) => {
 	return <div className="games-wrapper list-wrapper">
         {showGameModal && <AddGameModal dispatch={dispatch} />}
 		<h1>Games We Play</h1>
-		<button className="btn btn-default" onClick={(e) => dispatch(openAddGameModal(e))}>Add Game</button>
+		{signedInSuccess && <button className="btn btn-default" onClick={(e) => dispatch(openAddGameModal(e))}>Add Game</button>}
 		{ gamesList }
 	</div>;
 };
@@ -23,7 +23,8 @@ let Games = ({ dispatch, games, showGameModal }) => {
 const mapStateToProps = (state) => {
     return {
         games: state.games.gamesList,
-        showGameModal: state.mainState.showGameModal
+        showGameModal: state.mainState.showGameModal,
+        signedInSuccess: state.mainState.signedInSuccess
     };
 };
 
