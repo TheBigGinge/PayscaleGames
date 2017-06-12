@@ -1,3 +1,5 @@
+import { get, post } from '../payscaleagent';
+
 export const HAS_SIGNED_IN = 'HAS_SIGNED_IN';
 export const HAS_SIGNED_OUT = 'HAS_SIGNED_OUT';
 export const CLOSE_ADD_GAME_MODAL = 'CLOSE_ADD_GAME_MODAL';
@@ -95,11 +97,23 @@ export const closeAddPlayaModal = () => {
 
 export const addPlaya = (e) => {
 	e.preventDefault();
-	return (dispatch) => {
+	return (dispatch, getState) => {
+		(getState) => this.addPlayaToDb(getState)
 		dispatch(closeAddPlayaModal());
 		dispatch(addNewPlayaToList());
 	}
 }
+
+const addPlayaToDb = (getState) => {
+	let newPlaya = getState().players.newPlaya;
+	post('localhost:8080/api/players/add', null, {
+		{
+	        "email": newPlaya.email,
+	        "name": newPlaya.name,
+	        "img_url": newPlaya.img
+	    }
+	})
+};
 
 export const updateNewPlayaImage = (e) => {
 	let image = e.target.value;
