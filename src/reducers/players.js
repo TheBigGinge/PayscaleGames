@@ -20,8 +20,15 @@ const initialState = {
 			name: "Ryan Moore",
 			wins: 3,
 			losses: 2,
-			email: "jims@payscale.com",
+			email: "ryan.moore@payscale.com",
 			img: "../../images/Ryan.png"
+		},
+		{
+			name: "Galen Scovell",
+			wins: "¯\\_(ツ)_/¯",
+			losses: "¯\\_(ツ)_/¯",
+			email: "galen.scovell@payscale.com",
+			img: "../../images/Galen.png"
 		}
 	],
 	newPlaya: {
