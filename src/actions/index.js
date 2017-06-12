@@ -20,6 +20,7 @@ export const ADD_WINNER = 'ADD_WINNER';
 export const UPDATE_WINNER = 'UPDATE_WINNER';
 export const REMOVE_WINNER = 'REMOVE_WINNER';
 export const SUBMIT_RESULTS = 'SUBMIT_RESULTS';
+export const SET_PLAYERS_FROM_DB = 'SET_PLAYERS_FROM_DB';
 
 export const hasSignedIn = () => {
 	return {
@@ -95,19 +96,23 @@ export const closeAddPlayaModal = () => {
 	};
 };
 
-export const addPlaya = (e) => {
-	e.preventDefault();
-	return (dispatch, getState) => {
-		(getState) => this.addPlayaToDb(getState)();
-		dispatch(closeAddPlayaModal());
-		dispatch(addNewPlayaToList());
+export const getPlayersFromDb = () => {
+	return (dispatch) => {
+		console.log('trying to dispatch');
+		get('localhost:8080/api/players/get', {}, (result) => { console.log(result); dispatch(setPlayersFromDB(result)) });
+	};
+};
+
+const setPlayersFromDB = (result) => {
+	return {
+		type: SET_PLAYERS_FROM_DB,
+		result
 	}
 }
 
 const addPlayaToDb = (getState) => {
-	debugger;
 	let newPlaya = getState().players.newPlaya;
-	(url, payload, callback) => this.post('localhost:8080/api/players/add',
+	post('localhost:8080/api/players/add',
 		{
 	        "email": newPlaya.email,
 	        "name": newPlaya.name,
@@ -115,8 +120,17 @@ const addPlayaToDb = (getState) => {
 	    },
 	(result) => {
 		console.log(result);
-	})
+	});
 };
+
+export const addPlaya = (e) => {
+	e.preventDefault();
+	return (dispatch, getState) => {
+		addPlayaToDb(getState);
+		dispatch(closeAddPlayaModal());
+		dispatch(addNewPlayaToList());
+	}
+}
 
 export const updateNewPlayaImage = (e) => {
 	let image = e.target.value;
@@ -193,7 +207,7 @@ export const voteForGame = (game, value) => {
 const post = (url, payload, callback) => {
 	debugger;
     return request.post(url)
-        .type('application/json')
+        .type('application/jsonp')
         .send(payload)
         .end(function(err, res) {
             if(err || !res.ok) {
@@ -208,6 +222,7 @@ const post = (url, payload, callback) => {
 
 const get = (url, payload, callback) => {
     return request.get(url)
+        .type('application/jsonp')
         .query(payload)
         .end(function(err, res) {
             if(err || !res.ok) {

@@ -1,4 +1,5 @@
-import { UPDATE_NEW_PLAYA_IMAGE, UPDATE_NEW_PLAYA_EMAIL, UPDATE_NEW_PLAYA_NAME, ADD_NEW_PLAYA_TO_LIST } from '../actions/index';
+import { UPDATE_NEW_PLAYA_IMAGE, UPDATE_NEW_PLAYA_EMAIL, UPDATE_NEW_PLAYA_NAME, ADD_NEW_PLAYA_TO_LIST,
+		 SET_PLAYERS_FROM_DB } from '../actions/index';
 
 const initialState = {
 	playerList: [
@@ -78,6 +79,19 @@ const players = (state = initialState, action) => {
 				newPlaya: newNewPlaya,
 				playerList: newPlayasList
 			});
+		case SET_PLAYERS_FROM_DB:
+			let resultList = action.result ? action.result.map((playa) => {
+				return {
+					name: playa.name,
+					email: playa.email,
+					img: playa.img_url,
+					wins: 0,
+					losses: 0
+				}
+			}) : [];
+			return Object.assign({}, state, {
+				playerList: action
+			})
 		default:
 			return state;
 	}
