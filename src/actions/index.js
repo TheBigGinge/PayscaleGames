@@ -1,4 +1,4 @@
-import { get, post } from '../payscaleagent';
+import request from 'superagent';
 
 export const HAS_SIGNED_IN = 'HAS_SIGNED_IN';
 export const HAS_SIGNED_OUT = 'HAS_SIGNED_OUT';
@@ -98,21 +98,21 @@ export const closeAddPlayaModal = () => {
 export const addPlaya = (e) => {
 	e.preventDefault();
 	return (dispatch, getState) => {
-		(getState) => this.addPlayaToDb(getState)
+		(getState) => this.addPlayaToDb(getState)();
 		dispatch(closeAddPlayaModal());
 		dispatch(addNewPlayaToList());
 	}
 }
 
 const addPlayaToDb = (getState) => {
+	debugger;
 	let newPlaya = getState().players.newPlaya;
-	post('localhost:8080/api/players/add', null, {
+	(url, payload, callback) => this.post('localhost:8080/api/players/add',
 		{
 	        "email": newPlaya.email,
 	        "name": newPlaya.name,
 	        "img_url": newPlaya.img
-	    }
-	},
+	    },
 	(result) => {
 		console.log(result);
 	})
@@ -188,4 +188,34 @@ export const voteForGame = (game, value) => {
 		game,
 		value
 	}
+}
+
+const post = (url, payload, callback) => {
+	debugger;
+    return request.post(url)
+        .type('application/json')
+        .send(payload)
+        .end(function(err, res) {
+            if(err || !res.ok) {
+                return;
+            } else {
+                if(typeof callback === 'function') {
+                    callback(res.body);
+                }
+            }
+        });
+}
+
+const get = (url, payload, callback) => {
+    return request.get(url)
+        .query(payload)
+        .end(function(err, res) {
+            if(err || !res.ok) {
+                return;
+            } else {
+                if(typeof callback === 'function') {
+                    callback(res.body);
+                }
+            }
+        });
 }
