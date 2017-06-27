@@ -25,6 +25,8 @@ var voteController = require('./api/voteController')(app, pg, process.env.DATABA
 
 app.use(express.static(static_path))
   .get('/', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.sendFile('index.html', {
       root: static_path
     });

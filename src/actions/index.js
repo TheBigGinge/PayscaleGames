@@ -20,6 +20,7 @@ export const ADD_WINNER = 'ADD_WINNER';
 export const UPDATE_WINNER = 'UPDATE_WINNER';
 export const REMOVE_WINNER = 'REMOVE_WINNER';
 export const SUBMIT_RESULTS = 'SUBMIT_RESULTS';
+export const SET_PLAYERS_FROM_DB = 'SET_PLAYERS_FROM_DB';
 
 export const hasSignedIn = () => {
 	return {
@@ -207,7 +208,7 @@ export const voteForGame = (game, value) => {
 const post = (url, payload, callback) => {
 	debugger;
     return request.post(url)
-        .type('application/json')
+        .type('application/jsonp')
         .send(payload)
         .end(function(err, res) {
             if(err || !res.ok) {
@@ -222,6 +223,7 @@ const post = (url, payload, callback) => {
 
 const get = (url, payload, callback) => {
     return request.get(url)
+        .type('application/jsonp')
         .query(payload)
         .end(function(err, res) {
             if(err || !res.ok) {

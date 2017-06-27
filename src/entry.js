@@ -14,6 +14,7 @@ import Players from './components/players';
 import Games from './components/games';
 import VotingPage from './components/votingPage';
 import EnterResults from './components/enterResults';
+import { getPlayersFromDb } from './actions/index';
 
 //Business below
 //Thank you internets.
@@ -36,6 +37,7 @@ function configureStore(memoryHistory, initialState) {
 
 let store = configureStore(browserHistory);
 const history = syncHistoryWithStore(browserHistory, store)
+store.dispatch(getPlayersFromDb());
 
 
 render(
