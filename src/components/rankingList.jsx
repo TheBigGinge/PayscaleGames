@@ -3,10 +3,10 @@ import Griddle, { plugins, RowDefinition, ColumnDefinition } from 'griddle-react
 import '../../css/griddle.scss';
 
 const fakeData = [
-	{player: 'Ryan Moore', Wins: 4, Losses: 4},
+	{player: 'Ryan Moore', Wins: 4, Losses: 2},
 	{player: 'Ashley Dillinger', Wins: 2, Losses: 4},
-	{player: 'Jim Skerrit', Wins: 1, Losses: 4},
-	{player: 'Mike Jansen', Wins: 3, Losses: 4}
+	{player: 'Jim Skerrit', Wins: 1, Losses: 5},
+	{player: 'Mike Jansen', Wins: 3, Losses: 3}
 ]
 {/*
 let CustomRowComponent = ({ rowData }) => (

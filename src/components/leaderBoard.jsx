@@ -31,6 +31,36 @@ class LeaderBoard extends React.Component {
             <div className="main-table">
                 <RankingList />
             </div>
+           <div>
+                <div className="header">
+                    <img src={ require('../../images/betrayalhouse.jpg') }/>
+                </div>
+                <div className="picture-header">
+                </div>
+            </div>
+            <div className="main-table">
+                <RankingList />
+            </div>
+           <div>
+                <div className="header">
+                    <img src={ require('../../images/dominion.jpg') }/>
+                </div>
+                <div className="picture-header">
+                </div>
+            </div>
+            <div className="main-table">
+                <RankingList />
+            </div>
+           <div>
+                <div className="header">
+                    <img src={ require('../../images/ivanhoe.jpg') }/>
+                </div>
+                <div className="picture-header">
+                </div>
+            </div>
+            <div className="main-table">
+                <RankingList />
+            </div>
 		</div>
 	}
 }

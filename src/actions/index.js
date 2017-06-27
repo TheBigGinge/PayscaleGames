@@ -98,25 +98,39 @@ export const closeAddPlayaModal = () => {
 export const addPlaya = (e) => {
 	e.preventDefault();
 	return (dispatch, getState) => {
-		(getState) => this.addPlayaToDb(getState)();
+		debugger
+		let newPlaya = getState().players.newPlaya;
+		dispatch(addPlayaToDb(newPlaya));
 		dispatch(closeAddPlayaModal());
 		dispatch(addNewPlayaToList());
 	}
 }
 
-const addPlayaToDb = (getState) => {
+const addPlayaToDb = (newPlaya) => {
 	debugger;
-	let newPlaya = getState().players.newPlaya;
-	(url, payload, callback) => this.post('localhost:8080/api/players/add',
-		{
-	        "email": newPlaya.email,
-	        "name": newPlaya.name,
-	        "img_url": newPlaya.img
-	    },
-	(result) => {
-		console.log(result);
-	})
+	return (dispatch) => {
+
+	    return request.post('http://localhost:8080/api/player/add')
+	        .type('application/json')
+	        .send({email: newPlaya.email, name: newPlaya.name, img_url: newPlaya.img_url})
+	        .end(function(err, res) {
+	        	var test = res;
+	        	debugger
+	        });
+	}
 };
+
+const getPlayaFromDb = (newPlaya) => {
+	return (dispatch) => {
+		request
+			.get('/api/player/get')
+			.query({ email: 'Mike.Jansen@payscale.com'}) // query string
+			.end(function(err, res){
+				var test = res;
+				debugger
+		});
+	}
+}
 
 export const updateNewPlayaImage = (e) => {
 	let image = e.target.value;

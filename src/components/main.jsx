@@ -14,7 +14,7 @@ class Main extends React.Component {
         return <div className="main">
             <div id='backgroundImage' >
                 <div className="container">
-                    Welcome to the 3rd Floor Gaming Group!
+                    Welcome to the PayScale Board Gaming Group!
                 </div>
             </div>
         </div>  
